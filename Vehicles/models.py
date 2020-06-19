@@ -8,7 +8,6 @@ class Car(models.Model):
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
     price = models.IntegerField()
-    kind = models.Value("Car")
     description = models.CharField(max_length=200)
     pic = models.ImageField(upload_to='gallery', null=False)
     pic1 = models.ImageField(upload_to='gallery', default="none", null=True)
@@ -19,6 +18,29 @@ class Car(models.Model):
     def __str__(self):
         title = self.year + " " + self.make + " " + self.model
         return title
+
+    def all_pic_urls(self):
+        all_fields = Car._meta.fields
+        pics = []
+        for field in all_fields:
+            if ("pic" in field.name and field.name != "pic"):
+                picVal = getattr(self, field.name)
+                if (picVal != "none"):
+                    pics.append(getattr(getattr(self, str(field.name)), "url"))
+        return pics
+
+    def count_pics(self):
+        all_fields = Car._meta.fields
+        list_count = []
+        pic_count = 0
+        for field in all_fields:
+            if ("pic" in field.name and field.name != "pic"):
+                picVal = getattr(self, field.name)
+                if (picVal != "none"):
+                    pic_count = pic_count + 1
+                    list_count.append(pic_count)
+        return list_count
+        
 
 class Truck(models.Model):
     year = models.CharField(max_length=4)

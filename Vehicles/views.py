@@ -10,7 +10,15 @@ from .models import Car, Motorcycle, Suv, Truck
 def GetCarPics(vehicle):
     all_fields = Car._meta.fields
     print(all_fields[0].name)
+    print(getattr(vehicle, str(all_fields[7].name)))
 
+    x = []
+    for i in all_fields:
+        if ("pic" in i.name):
+            picVal = getattr(vehicle, i.name)
+            if (picVal != "none"):
+                x.append(getattr(getattr(vehicle, str(i.name)), "url"))
+    return x
 
 #######################
 
@@ -20,8 +28,8 @@ def index(request):
 
 def car_post(request, v_id):
     vehicle = Car.objects.get(pk=v_id)
-    vehiclePics = [vehicle.pic, vehicle.pic1, vehicle.pic2,]
-    context = {'vehicle' : vehicle}
+    vehiclePics = GetCarPics(vehicle)
+    context = {'vehicle' : vehicle, 'vehiclePics' : vehiclePics}
     return render(request, 'Vehicles/post.html', context)
 
 def truck_post(request, v_id):
