@@ -1,0 +1,8 @@
+body {
+    background-color: gray;
+    text-align: center;
+  }
+#navImage {
+	background-image: url("banner.png");
+	background-size: cover;
+}

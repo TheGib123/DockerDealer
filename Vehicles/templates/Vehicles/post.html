@@ -1,0 +1,95 @@
+{% extends "./headerFooterBase.html" %}
+
+
+{% block head %}
+{% load static %}
+<link rel="stylesheet" type="text/css" href="{% static 'Vehicles/post.css' %}">
+{% endblock %}
+
+
+
+
+{% block content %}
+<div id="demo" class="carousel slide" data-ride="carousel">
+
+  <!-- Indicators -->
+  <ul class="carousel-indicators">
+    <li data-target="#demo" data-slide-to="0" class="active"></li>
+    <li data-target="#demo" data-slide-to="1"></li>
+    <li data-target="#demo" data-slide-to="2"></li>
+  </ul>
+  
+  <!-- The slideshow -->
+  <div class="carousel-inner center">
+    <div class="carousel-item active">
+      <img src="{{ vehicle.pic.url }}" alt="Los Angeles" >
+    </div>
+    <div class="carousel-item">
+      <img src="{{ vehicle.pic.url }}" alt="Chicago" >
+    </div>
+    <div class="carousel-item">
+      <img src="{{ vehicle.pic.url }}" alt="New York" >
+    </div>
+  </div>
+  
+  <!-- Left and right controls -->
+  <a class="carousel-control-prev" href="#demo" data-slide="prev">
+    <span class="carousel-control-prev-icon"></span>
+  </a>
+  <a class="carousel-control-next" href="#demo" data-slide="next">
+    <span class="carousel-control-next-icon"></span>
+  </a>
+</div>
+
+
+<!-- Vehicle information -->
+<div class="row" style="background-color:white">
+  <div class="col-sm-3 info" style="text-align: left;"></div>
+  <div class="col-sm-1" style="text-align: left;">
+      <h4>year:</h4>
+  </div>
+
+  <div class="col-sm-6" style="text-align: left;">
+      <h4>{{ vehicle.year }} </h4>
+  </div>
+
+  <div class="col-sm-3 info" style="text-align: left;"></div>
+  <div class="col-sm-1" style="text-align: left;">
+    <h4>make:</h4>
+  </div>
+
+  <div class="col-sm-6" style="text-align: left;">
+      <h4>{{ vehicle.make }} </h4>
+  </div>
+
+  <div class="col-sm-3 info" style="text-align: left;"></div>
+  <div class="col-sm-1" style="text-align: left;">
+    <h4>model:</h4>
+  </div>
+
+  <div class="col-sm-6" style="text-align: left;">
+    <h4>{{ vehicle.model }} </h4>
+  </div>
+
+  <div class="col-sm-3 info" style="text-align: left;"></div>
+  <div class="col-sm-1" style="text-align: left;">
+    <h4>price:</h4>
+  </div>
+
+  <div class="col-sm-6" style="text-align: left;">
+    <h4>{{ vehicle.price }} </h4>
+  </div>
+
+  <div class="col-sm-3 info" style="text-align: left;"></div>
+  <div class="col-sm-1" style="text-align: left;">
+    <h4>desc:</h4>
+  </div>
+
+  <div class="col-sm-6" style="text-align: left;">
+    <h4>{{ vehicle.description }} </h4>
+  </div>
+
+  
+</div>
+{% endblock %}
+
