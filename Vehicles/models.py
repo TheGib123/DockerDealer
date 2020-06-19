@@ -3,7 +3,7 @@ import os
 # Create your models here.
 
 
-class Car(models.Model):
+class Vehicle(models.Model):
     year = models.CharField(max_length=4)
     make = models.CharField(max_length=50)
     model = models.CharField(max_length=50)
@@ -40,43 +40,18 @@ class Car(models.Model):
                     pic_count = pic_count + 1
                     list_count.append(pic_count)
         return list_count
-        
 
-class Truck(models.Model):
-    year = models.CharField(max_length=4)
-    make = models.CharField(max_length=50)
-    model = models.CharField(max_length=50)
-    price = models.IntegerField()
-    kind = models.Value("Truck")
-    description = models.CharField(max_length=200)
-    pic = models.ImageField(upload_to='gallery', blank=True, null=True)
+    class Meta:
+        abstract = True
 
-    def __str__(self):
-        title = self.year + " " + self.make + " " + self.model
-        return title
+class Car(Vehicle):
+  pass
 
-class Suv(models.Model):
-    year = models.CharField(max_length=4)
-    make = models.CharField(max_length=50)
-    model = models.CharField(max_length=50)
-    price = models.IntegerField()
-    kind = models.Value("Suv")
-    description = models.CharField(max_length=200)
-    pic = models.ImageField(upload_to='gallery', blank=True, null=True)
+class Truck(Vehicle):
+  pass
 
-    def __str__(self):
-        title = self.year + " " + self.make + " " + self.model
-        return title
+class Suv(Vehicle):
+  pass
 
-class Motorcycle(models.Model):
-    year = models.CharField(max_length=4)
-    make = models.CharField(max_length=50)
-    model = models.CharField(max_length=50)
-    price = models.IntegerField()
-    kind = models.Value("Motorcycle")
-    description = models.CharField(max_length=200)
-    pic = models.ImageField(upload_to='gallery', blank=True, null=True)
-
-    def __str__(self):
-        title = self.year + " " + self.make + " " + self.model
-        return title
+class Motorcycle(Vehicle):
+  pass
