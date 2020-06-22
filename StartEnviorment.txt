@@ -1,0 +1,15 @@
+docker-compose build
+docker-compose  
+docker-compose up
+docker start web service
+docker start database 
+docker exec -it webContainer bash
+	make migrations
+	migrate
+	createsuperuser
+docker stop web service
+docker stop database 
+docker start web service
+docker start database 
+
+http://localhost:8000
