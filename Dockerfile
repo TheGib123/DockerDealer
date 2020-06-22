@@ -1,9 +1,15 @@
+# Pull the base image
 FROM python:3.7
+
+# Set environment variables
+ENV PYTHONDONTWRITEBYTECODE 1
 ENV PYTHONUNBUFFERED 1
-ENV DJANGO_SETTINGS_MODULE=Dealer.settings
+
 RUN mkdir /code
 WORKDIR /code
-COPY requirements.txt /code/
+#Upgrade pip
+RUN pip install pip -U
+ADD requirements.txt /code/
+#Install dependencies
 RUN pip install -r requirements.txt
-RUN pip install psycopg2-binary
-COPY . /code/
+ADD . /code/
